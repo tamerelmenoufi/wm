@@ -18,9 +18,9 @@
                 }
                 
             }    
-            echo $q = "insert into pre_cadastro_aluno{$homologacao} set ".implode(", ", $campos);
-            // mysql_query($q);
-            // $codigo_aluno = mysql_insert_id();
+            echo $q = str_replace($de, $para,"insert into pre_cadastro_aluno{$homologacao} set ".implode(", ", $campos));
+            mysql_query($q);
+            $codigo_aluno = mysql_insert_id();
             echo "<br><br>";
 
 
@@ -43,9 +43,9 @@
                     }
                     
                 }    
-                echo $q = " - insert into matricula{$homologacao} set ".implode(", ", $campos);
-                // mysql_query($q);
-                // $codigo_matricula = mysql_insert_id();
+                echo $q = str_replace($de, $para,"insert into matricula{$homologacao} set ".implode(", ", $campos));
+                mysql_query($q);
+                $codigo_matricula = mysql_insert_id();
                 echo "<br>";   
                 
                 //Entrar nas Provas
@@ -69,9 +69,9 @@
                         }
                         
                     }    
-                    echo $q = " . -- insert into provas{$homologacao} set ".implode(", ", $campos);
-                    // mysql_query($q);
-                    // $codigo_prova = mysql_insert_id();
+                    echo $q = str_replace($de, $para,"insert into provas{$homologacao} set ".implode(", ", $campos));
+                    mysql_query($q);
+                    $codigo_prova = mysql_insert_id();
                     echo "<br>";  
                     
                     // Listando as questoes
@@ -92,9 +92,11 @@
                                 
                             }
                             
-                        }    
-                        echo $q = " . -- insert into provas{$homologacao} set ".implode(", ", $campos);
-                        // mysql_query($q);
+                        }
+                        $de = ['[codigo_aluno]','[codigo_matricula]','[codigo_prova]'];
+                        $para = [$codigo_aluno,$codigo_matricula,$codigo_prova];
+                        echo $q = str_replace($de, $para,"insert into provas{$homologacao} set ".implode(", ", $campos));
+                        mysql_query($q);
                         echo "<br>";  
                         
                         // Listando as questoes
