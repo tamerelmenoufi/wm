@@ -20,7 +20,7 @@
 
 
             //Entrar nas matículas
-            echo "<br><b>Matrículas</b><br>";
+            echo "<br><b>Matriculas</b><br>";
             $query1 = "select * from matricula_migra where codigo_aluno = '{$d->codigo}'";
             $result1 = mysql_query($query1);
             while($d1 = mysql_fetch_object($result1)){
