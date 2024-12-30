@@ -1,7 +1,7 @@
 <?php
 
-        mysql_connect("mysql","root","SenhaDoBanco");
-        mysql_select_db("ciec_ead");
+        mysql_connect("mysql","root","SenhaDoBanco") or die("erro conexao");
+        mysql_select_db("ciec_ead") or die('erro banco');
 
 
         echo $query = "select * from pre_cadastro_aluno_migra";
