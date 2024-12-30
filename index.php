@@ -28,8 +28,8 @@
                 $campos = [];
                 foreach($d1 as $i => $v){
                     if($i != 'codigo'){
-                        if($i == 'codigo_matricula'){
-                            $campos[] = "codigo_matricula = '[codigo_matricula]'";
+                        if($i == 'codigo_aluno'){
+                            $campos[] = "codigo_matricula = '[codigo_aluno]'";
                         }else{
                             $campos[] = "{$i} = '{$v}'";
                         }
@@ -37,7 +37,7 @@
                     }
                     
                 }    
-                echo $q = "insert into matricula set ".implode(", ", $campos);
+                echo $q = " - insert into matricula set ".implode(", ", $campos);
                 echo "<br>";   
                 
                 //Entrar nas Provas
@@ -58,7 +58,7 @@
                         }
                         
                     }    
-                    echo $q = "insert into provas set ".implode(", ", $campos);
+                    echo $q = " . -- insert into provas set ".implode(", ", $campos);
                     echo "<br>";   
                     
     
