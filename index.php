@@ -99,8 +99,8 @@
                             }
                             
                         }
-                        
-                        echo $q = str_replace($de, $para,"insert into provas{$homologacao} set ".implode(", ", $campos));
+
+                        echo $q = str_replace($de, $para,"insert into provas_perguntas{$homologacao} set ".implode(", ", $campos));
                         mysql_query($q);
                         echo "<br>";  
                         
