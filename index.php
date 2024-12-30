@@ -25,7 +25,7 @@
             while($d1 = mysql_fetch_object($result1)){
 
                 $campos = [];
-                foreach($d as $i => $v){
+                foreach($d1 as $i => $v){
                     if($i != 'codigo'){
                         if($i == 'codigo_matricula'){
                             $campos[] = "codigo_matricula = '[codigo_matricula]'";
