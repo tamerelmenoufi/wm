@@ -29,7 +29,7 @@
                 foreach($d1 as $i => $v){
                     if($i != 'codigo'){
                         if($i == 'codigo_aluno'){
-                            $campos[] = "codigo_matricula = '[codigo_aluno]'";
+                            $campos[] = "codigo_aluno = '[codigo_aluno]'";
                         }else{
                             $campos[] = "{$i} = '{$v}'";
                         }
@@ -59,7 +59,40 @@
                         
                     }    
                     echo $q = " . -- insert into provas set ".implode(", ", $campos);
-                    echo "<br>";   
+                    echo "<br>";  
+                    
+                    // Listando as questoes
+
+                    $query3 = "select * from provas_perguntas_migra where codigo_prova = '{$d2->codigo}'";
+                    $result3 = mysql_query($query3);
+                    while($d3 = mysql_fetch_object($result3)){
+                        echo "<br><b>Porvas Perguntas</b><br>";
+                        $campos = [];
+                        foreach($d3 as $i => $v){
+                            if($i != 'codigo'){
+                                if($i == 'codigo_prova'){
+                                    $campos[] = "codigo_prova = '[codigo_prova]'";
+                                }else if($i == 'codigo_aluno'){
+                                    $campos[] = "codigo_aluno = '[codigo_aluno]'";
+                                }else{
+                                    $campos[] = "{$i} = '{$v}'";
+                                }
+                                
+                            }
+                            
+                        }    
+                        echo $q = " . -- insert into provas set ".implode(", ", $campos);
+                        echo "<br>";  
+                        
+                        // Listando as questoes
+    
+                        
+                        
+        
+        
+        
+        
+                    }
                     
     
     
