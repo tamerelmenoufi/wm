@@ -10,7 +10,10 @@
         while($d = mysql_fetch_object($result)){
             $campos = [];
             foreach($d as $i => $v){
-                $campos[] = "{$i} = '{$v}'";
+                if($i != 'codigo'){
+                    $campos[] = "{$i} = '{$v}'";
+                }
+                
             }    
             echo $q = "insert into pre_cadastro_aluno set ".implode(", ", $campos);
             echo "<hr>";
