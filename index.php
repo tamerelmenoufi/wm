@@ -123,7 +123,7 @@
                 }//fim do if para inserção das matriculas
 
             }
-            echo "{$resultado} Matrícula(s) Imprtada(s)!"; 
+            echo "{$resultado} Matricula(s) Imprtada(s)!"; 
             
 
 
