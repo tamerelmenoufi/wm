@@ -1,7 +1,7 @@
 <?php
         //exit();
 
-        if(!$_GET['c'] and $_GET['c'] <= 12509) exit();
+        if(!$_GET['c'] and ($_GET['c']*1 <= 12509)) exit();
 
         mysql_connect("mysql","root","SenhaDoBanco") or die("erro conexao");
         mysql_select_db("cieceja_ead") or die('erro banco');
