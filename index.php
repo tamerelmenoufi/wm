@@ -35,7 +35,7 @@
                     
                 }
 
-                echo $q = "select codigo from matricula{$homologacao} where ".implode(", ", $campos);
+                echo $q = str_replace($de, $para,"select codigo from matricula{$homologacao} where ".implode(" and ", $campos));
                 if(!mysql_num_rows(mysql_query($q))){
 
                     echo $q = "insert into matricula{$homologacao} set ".implode(", ", $campos);
@@ -68,7 +68,7 @@
                             
                         }
 
-                        echo $q = "select codigo from provas{$homologacao} where ".implode(", ", $campos);
+                        echo $q = str_replace($de, $para,"select codigo from provas{$homologacao} where ".implode(" and ", $campos));
                         if(!mysql_num_rows(mysql_query($q))){
 
                             $q = str_replace($de, $para,"insert into provas{$homologacao} set ".implode(", ", $campos));
@@ -97,7 +97,7 @@
                                     }
                                     
                                 }
-                                echo $q = "select codigo from provas_perguntas{$homologacao} where ".implode(", ", $campos);
+                                echo $q = str_replace($de, $para,"select codigo from provas_perguntas{$homologacao} where ".implode(" and ", $campos));
                                 if(!mysql_num_rows(mysql_query($q))){
 
                                     $q = str_replace($de, $para,"insert into provas_perguntas{$homologacao} set ".implode(", ", $campos));
