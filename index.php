@@ -8,13 +8,15 @@
 
         $homologacao = "_h";
 
+        $resultado = 0;
+
 
         $query = "select * from pre_cadastro_aluno_migra where codigo = '{$_GET['c']}'";
         $result = mysql_query($query);
         
         while($d = mysql_fetch_object($result)){
             set_time_limit(90);
-              echo "<br><br>";
+            //   echo "<br><br>";
 
             //Entrar nas matículas
             
@@ -22,7 +24,7 @@
             $result1 = mysql_query($query1);
             while($d1 = mysql_fetch_object($result1)){
             set_time_limit(90);
-                echo "<br><b>Matriculas</b><br>";
+                // echo "<br><b>Matriculas</b><br>";
                 $campos = [];
                 foreach($d1 as $i => $v){
                     if($i != 'codigo'){
@@ -35,15 +37,17 @@
                     
                 }
 
-                echo $q = str_replace($de, $para,"select codigo from matricula{$homologacao} where ".implode(" and ", $campos));
+                $q = str_replace($de, $para,"select codigo from matricula{$homologacao} where ".implode(" and ", $campos));
                 if(!mysql_num_rows(mysql_query($q))){
 
-                    echo $q = "insert into matricula{$homologacao} set ".implode(", ", $campos);
+                    $resultado++;
+
+                    $q = "insert into matricula{$homologacao} set ".implode(", ", $campos);
                     mysql_query($q);
                     $codigo_matricula = mysql_insert_id();
                     $de = ['[codigo_matricula]'];
                     $para = [$codigo_matricula];
-                    echo "<br>"; 
+                    // echo "<br>"; 
                 
                 
                     //Entrar nas Provas
@@ -52,7 +56,7 @@
                     $result2 = mysql_query($query2);
                     while($d2 = mysql_fetch_object($result2)){
                         set_time_limit(90);
-                        echo "<br><b>Porvas</b><br>";
+                        // echo "<br><b>Porvas</b><br>";
                         $campos = [];
                         foreach($d2 as $i => $v){
                             if($i != 'codigo'){
@@ -68,7 +72,7 @@
                             
                         }
 
-                        echo $q = str_replace($de, $para,"select codigo from provas{$homologacao} where ".implode(" and ", $campos));
+                        $q = str_replace($de, $para,"select codigo from provas{$homologacao} where ".implode(" and ", $campos));
                         if(!mysql_num_rows(mysql_query($q))){
 
                             $q = str_replace($de, $para,"insert into provas{$homologacao} set ".implode(", ", $campos));
@@ -76,7 +80,7 @@
                             $codigo_prova = mysql_insert_id();
                             $de = ['[codigo_matricula]','[codigo_prova]'];
                             $para = [$codigo_matricula,$codigo_prova];
-                            echo "<br>";  
+                            // echo "<br>";  
                             
                             // Listando as questoes
 
@@ -84,7 +88,7 @@
                             $result3 = mysql_query($query3);
                             while($d3 = mysql_fetch_object($result3)){
                                 set_time_limit(90);
-                                echo "<br><b>Porvas Perguntas</b><br>";
+                                // echo "<br><b>Porvas Perguntas</b><br>";
                                 $campos = [];
                                 foreach($d3 as $i => $v){
                                     if($i != 'codigo'){
@@ -97,12 +101,12 @@
                                     }
                                     
                                 }
-                                echo $q = str_replace($de, $para,"select codigo from provas_perguntas{$homologacao} where ".implode(" and ", $campos));
+                                $q = str_replace($de, $para,"select codigo from provas_perguntas{$homologacao} where ".implode(" and ", $campos));
                                 if(!mysql_num_rows(mysql_query($q))){
 
                                     $q = str_replace($de, $para,"insert into provas_perguntas{$homologacao} set ".implode(", ", $campos));
                                     mysql_query($q);
-                                    echo "<br>";  
+                                    // echo "<br>";  
 
                                 }//fim do if para inserção das provas Perguntas
                                 
@@ -119,10 +123,8 @@
                 }//fim do if para inserção das matriculas
 
             }
-            echo "<hr>"; 
+            echo "{$resultado} Matrícula(s) Imprtada(s)!"; 
             
-
-
 
 
         }
