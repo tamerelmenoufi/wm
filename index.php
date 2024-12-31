@@ -9,7 +9,7 @@
         $homologacao = "_h";
 
 
-        $query = "select * from pre_cadastro_aluno_migra where codigo = '{$_GET['c']}'";
+        echo $query = "select * from pre_cadastro_aluno_migra where codigo = '{$_GET['c']}'";
         $result = mysql_query($query);
         
         while($d = mysql_fetch_object($result)){
