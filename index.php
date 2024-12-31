@@ -9,7 +9,7 @@
         $homologacao = "_h";
 
 
-        echo $query = "select * from pre_cadastro_aluno_migra where codigo = '{$_GET['c']}'";
+        $query = "select * from pre_cadastro_aluno_migra where codigo = '{$_GET['c']}'";
         $result = mysql_query($query);
         
         while($d = mysql_fetch_object($result)){
@@ -35,7 +35,8 @@
                     
                 }
 
-                if(!mysql_num_rows(mysql_query("select codigo from matricula{$homologacao} where ".implode(", ", $campos)))){
+                echo $q = "select codigo from matricula{$homologacao} where ".implode(", ", $campos);
+                if(!mysql_num_rows(mysql_query($q))){
 
                     echo $q = "insert into matricula{$homologacao} set ".implode(", ", $campos);
                     mysql_query($q);
@@ -67,9 +68,10 @@
                             
                         }
 
-                        if(!mysql_num_rows(mysql_query("select codigo from provas{$homologacao} where ".implode(", ", $campos)))){
+                        echo $q = "select codigo from provas{$homologacao} where ".implode(", ", $campos);
+                        if(!mysql_num_rows(mysql_query($q))){
 
-                            echo $q = str_replace($de, $para,"insert into provas{$homologacao} set ".implode(", ", $campos));
+                            $q = str_replace($de, $para,"insert into provas{$homologacao} set ".implode(", ", $campos));
                             mysql_query($q);
                             $codigo_prova = mysql_insert_id();
                             $de = ['[codigo_matricula]','[codigo_prova]'];
@@ -95,10 +97,10 @@
                                     }
                                     
                                 }
+                                echo $q = "select codigo from provas_perguntas{$homologacao} where ".implode(", ", $campos);
+                                if(!mysql_num_rows(mysql_query($q))){
 
-                                if(!mysql_num_rows(mysql_query("select codigo from provas_perguntas{$homologacao} where ".implode(", ", $campos)))){
-
-                                    echo $q = str_replace($de, $para,"insert into provas_perguntas{$homologacao} set ".implode(", ", $campos));
+                                    $q = str_replace($de, $para,"insert into provas_perguntas{$homologacao} set ".implode(", ", $campos));
                                     mysql_query($q);
                                     echo "<br>";  
 
