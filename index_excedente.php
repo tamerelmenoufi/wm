@@ -7,7 +7,7 @@
         $homologacao = "_h";
 
 
-        $query = "select * from pre_cadastro_aluno_migra";
+        $query = "select * from pre_cadastro_aluno_migra where codigo = 12381";
         $result = mysql_query($query);
         
         while($d = mysql_fetch_object($result)){
