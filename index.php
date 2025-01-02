@@ -12,10 +12,12 @@
         $resultado = 0;
 
 
-        $query = "select * from pre_cadastro_aluno_migra where codigo = '{$_GET['c']}'";
+        $query = "select * from pre_cadastro_aluno_migra where codigo = '12381'";
         $result = mysql_query($query);
         
         while($d = mysql_fetch_object($result)){
+
+            $c->codigo = 12449;
             set_time_limit(90);
             //   echo "<br><br>";
 
