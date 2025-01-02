@@ -1,5 +1,5 @@
 <?php
-        exit();
+        // exit();
 
         mysql_connect("mysql","root","SenhaDoBanco") or die("erro conexao");
         mysql_select_db("cieceja_ead") or die('erro banco');
