@@ -67,6 +67,8 @@
                                 $campos[] = "codigo_matricula = '[codigo_matricula]'";
                             }else if($i == 'codigo_aluno'){
                                 $campos[] = "codigo_aluno = '[codigo_aluno]'";
+                            }else if($i == 'chave'){
+                                $campos[] = "{$i} = '{$v}xyz'";
                             }else{
                                 $campos[] = "{$i} = '{$v}'";
                             }
@@ -95,6 +97,8 @@
                             if($i != 'codigo'){
                                 if($i == 'codigo_prova'){
                                     $campos[] = "codigo_prova = '[codigo_prova]'";
+                                }else if($i == 'chave'){
+                                    $campos[] = "{$i} = '{$v}xyz'";
                                 }else{
                                     $campos[] = "{$i} = '{$v}'";
                                 }
